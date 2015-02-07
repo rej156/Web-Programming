@@ -31,10 +31,21 @@
     echo "<br ><ul class='menu'>" .
          "<li><a href='members.php?view=$user'>Home</a></li>" .
          "<li><a href='members.php'>Members</a></li>"         .
-         "<li><a href='friends.php'>Friends</a></li>"         .
+         "<li><div id='flip'>Friends</div></li>"         .
          "<li><a href='messages.php'>Messages</a></li>"       .
          "<li><a href='profile.php'>Edit Profile</a></li>"    .
-         "<li><a href='logout.php'>Log out</a></li></ul><br>";
+         "<li><a href='logout.php'>Log out</a></li></ul><br>" .
+         "<div id='panel'>Testing</div>".
+        "<script src='http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js'></script>" .
+        "<script>
+            $(document).ready(
+                function(){
+                    $('#flip').click(function(){
+                    $('#panel').slideToggle('slow');
+                });
+            });
+        </script>";
+
   }
   else
   {

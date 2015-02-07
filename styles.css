@@ -24,11 +24,11 @@ img {
   box-shadow        :2px 2px 2px #888;
 }
 
-li a, .button {
+li a, .button, #flip {
   text-decoration:none;
 }
 
-li a:hover, .button:hover {
+li a:hover, .button:hover, #flip:hover{
   color:green;
 }
  
@@ -93,4 +93,19 @@ li a:hover, .button:hover {
   font-weight:bold;
   font-style:italic;
   font-size :97px;
+}
+
+#panel
+{
+  text-align:center;
+  background-color:#e5eecc;
+  border:solid 1px #c3c3c3;
+  padding:30px;
+  display:none;
+}
+
+#flip {
+  display           :inline;
+  padding           :0px;
+  color             :#d04;
 }
