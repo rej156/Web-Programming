@@ -1,8 +1,8 @@
 <?php // Example 26-1: functions.php
   $dbhost  = 'localhost';       // Unlikely to require changing
-  $dbname  = 'oliva';           // Modify these...
-  $dbuser  = 'oliva';           // ...variables according
-  $dbpass  = 'oliva';           // ...to your installation
+  $dbname  = 'socialnetwork';           // Modify these...
+  $dbuser  = 'root';           // ...variables according
+  $dbpass  = 'admin';           // ...to your installation
   $appname = "Social Network";  // ...and preference
 
   $connection = new mysqli($dbhost, $dbuser, $dbpass, $dbname);
