@@ -55,6 +55,11 @@
     }
   }
 
+  function youtubeEmbed($url)
+  {
+    return "<iframe width='560' height='315' src='" . $url . "' frameborder='0' allowfullscreen></iframe>";
+  }
+
   function soundcloudEmbed($url)
   {
     $getValues=file_get_contents('http://soundcloud.com/oembed?format=js&url='.$url.'&iframe=true');
