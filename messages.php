@@ -32,7 +32,7 @@
 
     echo "<div class='main'><h3>$name1 Messages</h3>";
     showProfile($view);
-    
+
     echo <<<_END
       <form method='post' action='messages.php?view=$view'>
       Type here to leave a message:<br>
@@ -47,11 +47,12 @@ _END;
       $erase = sanitizeString($_GET['erase']);
       queryMysql("DELETE FROM messages WHERE id=$erase AND recip='$user'");
     }
-    
+
     $query  = "SELECT * FROM messages WHERE recip='$view' ORDER BY time DESC";
     $result = queryMysql($query);
     $num    = $result->num_rows;
-    
+    $youtube_pattern = '/(http:|https:)?\/\/(www\.)?(youtube.com|youtu.be)\/(watch)?(\?v=)?(\S+)?/';
+    $soundcloud_pattern = '/((https:\/\/)|(http:\/\/)|(www.)|(\s))+(soundcloud.com\/)+[a-zA-Z0-9\-\.]+(\/)+[a-zA-Z0-9\-\.]+/';
     for ($j = 0 ; $j < $num ; ++$j)
     {
       $row = $result->fetch_array(MYSQLI_ASSOC);
@@ -61,7 +62,20 @@ _END;
         echo date('M jS \'y g:ia:', $row['time']);
         echo " <a href='messages.php?view=" . $row['auth'] . "'>" . $row['auth']. "</a> ";
 
-        if ($row['pm'] == 0)
+          /* For now https://www.youtube.com/embed/r2YAOeuz64U links work on
+             local development environments due to CORS
+             Until hosted on webprojects before submission, watch links will
+             trigger console log errors.
+           */
+        if ($row['pm'] == 0 && preg_match($youtube_pattern, $row['message']))
+          echo "posted a youtube link! " . youtubeEmbed($row['message']);
+        elseif (preg_match($youtube_pattern, $row['message']))
+          echo "sent a private youtube link! " . youtubeEmbed($row['message']);
+        elseif ($row['pm'] == 0 && preg_match($soundcloud_pattern, $row['message']))
+          echo "sent a soundcloud link!" . soundcloudEmbed($row['message']);
+        elseif (preg_match($soundcloud_pattern, $row['message']))
+          echo "sent a private soundcloud link! " . soundcloudEmbed($row['message']);
+        elseif ($row['pm'] == 0)
           echo "wrote: &quot;" . $row['message'] . "&quot; ";
         else
           echo "whispered: <span class='whisper'>&quot;" .
