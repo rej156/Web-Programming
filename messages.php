@@ -67,16 +67,14 @@ _END;
              Until hosted on webprojects before submission, watch links will
              trigger console log errors.
            */
-        if (preg_match($youtube_pattern, $row['message']))
-          echo "sent a private youtube link! <iframe width='560' height='315'
-          src='" . $row['message'] . "' frameborder='0' allowfullscreen></iframe>";
-        elseif ($row['pm'] == 0 && preg_match($youtube_pattern, $row['message']))
-          echo "posted a youtube link! <iframe width='560' height='315'
-          src='" . $row['message'] . "' frameborder='0' allowfullscreen></iframe>";
-        elseif (preg_match($soundcloud_pattern, $row['message']))
-          echo "sent a private soundcloud link!" . soundcloudEmbed($row['message']);
+        if ($row['pm'] == 0 && preg_match($youtube_pattern, $row['message']))
+          echo "posted a youtube link! " . youtubeEmbed($row['message']);
+        elseif (preg_match($youtube_pattern, $row['message']))
+          echo "sent a private youtube link! " . youtubeEmbed($row['message']);
         elseif ($row['pm'] == 0 && preg_match($soundcloud_pattern, $row['message']))
           echo "sent a soundcloud link!" . soundcloudEmbed($row['message']);
+        elseif (preg_match($soundcloud_pattern, $row['message']))
+          echo "sent a private soundcloud link! " . soundcloudEmbed($row['message']);
         elseif ($row['pm'] == 0)
           echo "wrote: &quot;" . $row['message'] . "&quot; ";
         else
