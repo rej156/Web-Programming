@@ -13,7 +13,10 @@
         $error = "Not all fields were entered<br>";
     else
     {
-      $result = queryMySQL("SELECT user,pass FROM members WHERE user='$user' AND pass='$pass'");
+
+      $salt = "salt";
+      $token = hash('ripemd128', $pass.$salt);
+      $result = queryMySQL("SELECT user,pass FROM members WHERE user='$user' AND pass='$token'");
 
       if ($result->num_rows == 0)
       {
@@ -22,7 +25,7 @@
       else
       {
         $_SESSION['user'] = $user;
-        $_SESSION['pass'] = $pass;
+        $_SESSION['pass'] = $token;
         die("You are now logged in. Please <a href='members.php?view=$user'>" .
             "click here</a> to continue.<br><br>");
       }

@@ -62,7 +62,9 @@ _END;
         $error = "That username already exists<br><br>";
       else
       {
-        queryMysql("INSERT INTO members VALUES('$user', '$pass')");
+        $salt = "salt";
+        $token = hash('ripemd128', $pass.$salt);
+        queryMysql("INSERT INTO members VALUES('$user', '$token')");
         die("<h4>Account created</h4>Please Log in.<br><br>");
       }
     }
