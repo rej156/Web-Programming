@@ -35,6 +35,13 @@
               'user VARCHAR(16),
               text VARCHAR(4096),
               INDEX(user(6))');
+  
+  createTable('photos',
+			   'photoID INT AUTO_INCREMENT PRIMARY KEY,
+			    user VARCHAR(16),				
+				INDEX(user(6))');
+				
+
 ?>
 
     <br>...done.
