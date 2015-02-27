@@ -59,9 +59,11 @@
     elseif ($t2)       { echo " &rarr; is following you";
       $follow = "recip"; }
     
-    if (!$t1) echo " [<a href='members.php?add="   .$row['user'] . "'>$follow</a>]</ul></div>";
-    else      echo " [<a href='members.php?remove=".$row['user'] . "'>drop</a>]</ul></div>";
+    if (!$t1) echo " [<a href='members.php?add="   .$row['user'] . "'>$follow</a>]</ul>";
+    else      echo " [<a href='members.php?remove=".$row['user'] . "'>drop</a>]</ul>";
+
   }
+  echo "</div>";
 ?>
   </body>
 </html>
