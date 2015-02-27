@@ -8,8 +8,10 @@
   echo "\n<html><head>";
 
   require_once 'functions.php';
+    include 'friends.php';
 
-  $userstr = ' (Guest)';
+    $userstr = ' (Guest)';
+
 
   if (isset($_SESSION['user']))
   {
@@ -18,6 +20,7 @@
     $userstr  = " ($user)";
   }
   else $loggedin = FALSE;
+
 
   echo "<title>$appname$userstr</title><link rel='stylesheet' " .
        "href='styles.css' type='text/css'>"                     .
@@ -28,6 +31,7 @@
 
   if ($loggedin)
   {
+
     echo "<br ><ul class='menu'>" .
          "<li><a href='members.php?view=$user'>Home</a></li>" .
          "<li><a href='members.php'>Members</a></li>"         .
@@ -36,15 +40,18 @@
          "<li><a href='profile.php'>Edit Profile</a></li>"    .
 		 "<li><a href='photos.php'>Photos</a></li>" .
          "<li><a href='logout.php'>Log out</a></li></ul><br>" .
-         "<div id='panel'>Testing</div>".
+         "<div id='panel'>";
+      getFriends($user);
+        echo "</div>".
         "<script src='http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js'></script>" .
         "<script>
             $(document).ready(
                 function(){
-                    $('#flip').click(function(){
-                    $('#panel').slideToggle('slow');
-                });
-            });
+                    $('#flip').click(
+                        function(){
+                            $('#panel').slideToggle('slow');
+                        });//end click
+                });//end ready
         </script>";
 
   }
@@ -57,4 +64,5 @@
           "<span class='info'>&#8658; You must be logged in to " .
           "view this page.</span><br><br>");
   }
+
 ?>
