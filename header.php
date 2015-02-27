@@ -34,6 +34,7 @@
          "<li><div id='flip'>Friends</div></li>"         .
          "<li><a href='messages.php'>Messages</a></li>"       .
          "<li><a href='profile.php'>Edit Profile</a></li>"    .
+		 "<li><a href='photos.php'>Photos</a></li>" .
          "<li><a href='logout.php'>Log out</a></li></ul><br>" .
          "<div id='panel'>Testing</div>".
         "<script src='http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js'></script>" .
