@@ -20,7 +20,7 @@
 
   echo <<<_END
 	
-    <form method='post' action='photo_upload.php' enctype='multipart/form-data'>
+    <form id='uploadimage' method='post' action='photo_upload.php' enctype='multipart/form-data'>
     <h3>upload new image</h3>
     Image: <input type='file' name='fileToUpload' id='fileToUpload'>
     <input type='submit' value='Upload Image'>

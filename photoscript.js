@@ -20,7 +20,7 @@ $("#message").html(data);
 
 // Function to preview image after validation
 $(function() {
-$("#file").change(function() {
+$("#fileToUpload").change(function() {
 $("#message").empty(); // To remove the previous error message
 var file = this.files[0];
 var imagefile = file.type;
@@ -36,6 +36,7 @@ else
 var reader = new FileReader();
 reader.onload = imageIsLoaded;
 reader.readAsDataURL(this.files[0]);
+window.location.reload();
 }
 });
 });
